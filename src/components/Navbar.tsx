@@ -106,11 +106,20 @@ const Navbar = () => {
 
             {/* Right Side Actions */}
             <div className="flex items-center space-x-1">
-             
-
               {/* Auth Section */}
               {isAuthenticated ? (
-                <div className="hidden md:flex items-center ml-2">
+                <div className="hidden md:flex items-center ml-2 space-x-2">
+                   <Link
+                    to={user?.role === 'admin' ? '/admin/dashboard' : '/portal/dashboard'}
+                  >
+                    <Button variant="ghost" className={`font-medium transition-all duration-200 ${
+                      location.pathname.includes('dashboard')
+                        ? 'text-primary bg-primary/10'
+                        : 'text-foreground/80 hover:text-primary hover:bg-muted/50'
+                    }`}>
+                      Dashboard
+                    </Button>
+                  </Link>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" className="flex items-center space-x-2 px-3 py-2 h-auto hover:bg-muted/50 transition-colors hover:scale-105">
@@ -141,12 +150,6 @@ const Navbar = () => {
                         </div>
                       </DropdownMenuLabel>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem asChild>
-                        <Link to={user?.role === 'admin' ? '/admin/dashboard' : '/portal/dashboard'} className="flex items-center">
-                          <User className="mr-2 h-4 w-4" />
-                          Dashboard
-                        </Link>
-                      </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <Link to="/portal/profile" className="flex items-center">
                           <User className="mr-2 h-4 w-4" />
