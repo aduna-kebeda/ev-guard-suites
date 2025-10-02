@@ -214,7 +214,20 @@ const Navbar = () => {
           isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}>
           <div className="px-4 pt-2 pb-6 space-y-2 border-t border-border/50 bg-background/95 backdrop-blur-xl">
-           
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                  isActiveLink(item.href)
+                    ? 'text-primary bg-primary/10'
+                    : 'text-foreground/80 hover:text-primary hover:bg-muted/50'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
 
             {isAuthenticated ? (
               <div className="border-t border-border/50 pt-4 space-y-3">
